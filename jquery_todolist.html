@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery To Do List</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery_todo.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+<link rel="stylesheet" href="todostyles.css">
+</head>
+<body>
+
+<div id="container">
+        <h1>TO-DO List <span class="toggle-plus"><i class="fas fa-plus-square"></i></span></h1>
+        <input type="text" placeholder="Add New Item...">
+        <ul>
+            <li><span class="li-minus"><i class="fas fa-minus-circle"></i></span> Make webites</li>
+            <li><span class="li-minus"><i class="fas fa-minus-circle"></i></span> Make better websites</li>
+            <li><span class="li-minus"><i class="fas fa-minus-circle"></i></span> Stop bitching</li>
+        </ul>
+		</div>
+	
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+//Check off specific todos by clicking
+$("ul").on("click", "li", function(){
+    $(this).toggleClass("completed");
+});
+
+//click on x to delete todo
+$("ul").on("click", "span", function(e) {
+    $(this).parent().fadeOut(500,function(){
+        $(this).remove();
+    });
+    event.stopPropagation();
+});
+
+$("input[type='text']").keypress(function(e){
+    if(event.which === 13) {
+        //grabbing new todo text from input
+       let todoText = $(this).val();
+       $(this).val("");
+       //create a new li and add to ul
+       $("ul").append("<li><span class='li-minus'><i class='fas fa-minus-circle'></i></span> " + todoText + "</li>");
+    }
+});
+
+$(".toggle-plus").click(function(){
+    $("input[type='text']").fadeToggle(500);
+}); 
+	
+	</script>
+	</body>
+	
+	</html>
